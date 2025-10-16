@@ -1,0 +1,241 @@
+#:kivy 2.2.0
+
+WindowManager:
+    LoginScreen:
+    RegisterScreen:
+    MainScreen:
+
+<LoginScreen>:
+    name: "login"
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.1, 0.4, 0.6, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Citizen Help Portal"
+            font_size:32
+            bold: True
+            color: 1, 1, 1, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+
+        Label:
+            # text: "Username"
+            size_hint: (0.3, 0.05)
+            pos_hint: {"x": 0.15, "y": 0.65}
+            color: 1,1,1,1
+
+        TextInput:
+            id: username
+            hint_text: "Enter Username"
+            size_hint: (0.7, 0.06)
+            pos_hint: {"x": 0.15, "y": 0.6}
+            multiline: False
+
+        Label:
+            #text: "Password"
+            size_hint: (0.3, 0.05)
+            pos_hint: {"x": 0.15, "y": 0.52}
+            color: 1,1,1,1
+
+        TextInput:
+            id: password
+            hint_text: "Enter Password"
+            size_hint: (0.7, 0.06)
+            pos_hint: {"x": 0.15, "y": 0.47}
+            multiline: False
+            password: True
+
+
+    Button:
+        text: "Login"
+        size_hint: (0.4, 0.05)  # আরও ছোট
+        pos_hint: {"center_x": 0.5, "y": 0.35}
+        background_normal: ''
+        background_color: 0.2, 0.6, 0.2, 1
+        color: 1, 1, 1, 1
+        bold: True
+        on_release: root.login_user()
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [20]  # ছোট U-shape
+
+    Button:
+        text: "Register"
+        size_hint: (0.4, 0.05)  # আরও ছোট
+        pos_hint: {"center_x": 0.5, "y": 0.25}
+        background_normal: ''
+        background_color: 0.8, 0.5, 0.2, 1
+        color: 1, 1, 1, 1
+        bold: True
+        on_release: app.root.current = "register"
+        canvas.before:
+            Color:
+                rgba: self.background_color
+            RoundedRectangle:
+                pos: self.pos
+                size: self.size
+                radius: [20]  # ছোট U-shape
+
+
+<RegisterScreen>:
+    name: "register"
+    ScrollView:
+        do_scroll_x: False
+        do_scroll_y: True
+        GridLayout:
+            cols: 1
+            size_hint_y: None
+            height: self.minimum_height
+            padding: [20, 20]
+            spacing: 15
+
+            Label:
+                text: "Register New Account"
+                font_size: 20
+                color: 0.2, 0.6, 1, 1
+                bold: True
+                size_hint_y: None
+                height: 50
+
+            TextInput:
+                id: first_name
+                hint_text: "First Name"
+                size_hint_y: None
+                height: 45
+
+            TextInput:
+                id: last_name
+                hint_text: "Last Name"
+                size_hint_y: None
+                height: 45
+
+            TextInput:
+                id: phone
+                hint_text: "Phone Number"
+                input_filter: "int"
+                size_hint_y: None
+                height: 45
+
+            TextInput:
+                id: email
+                hint_text: "Email"
+                size_hint_y: None
+                height: 45
+
+            TextInput:
+                id: nid
+                hint_text: "NID Number"
+                input_filter: "int"
+                size_hint_y: None
+                height: 45
+
+            TextInput:
+                id: username
+                hint_text: "Username"
+                size_hint_y: None
+                height: 45
+
+            TextInput:
+                id: password
+                hint_text: "Password"
+                password: True
+                size_hint_y: None
+                height: 45
+
+            Spinner:
+                id: role
+                text: "Citizen"
+                values: ["Citizen", "Officer", "Admin"]
+                size_hint_y: None
+                height: 45
+
+            Button:
+                text: "Register"
+                background_color: 0.2, 0.6, 0.3, 1
+                size_hint_y: None
+                height: 5
+                on_release: root.register_user()
+
+            Button:
+                text: "Back to Login"
+                background_color: 0.8, 0.3, 0.3, 1
+                size_hint_y: None
+                height: 50
+                on_release: app.root.current = "login"
+
+
+<MainScreen>:
+    name: "main"
+    FloatLayout:
+        canvas.before:
+            Color:
+                rgba: 0.95, 0.95, 1, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Submit Report"
+            font_size: 28
+            color: 0.1, 0.4, 0.6, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.9}
+            bold: True
+
+        Label:
+            text: "Problem Type"
+            pos_hint: {"x": 0.15, "y": 0.75}
+            size_hint: (0.3, 0.05)
+            color: 0,0,0,1
+
+        TextInput:
+            id: problem
+            hint_text: "e.g., Road Issue, Water Problem"
+            size_hint: (0.7, 0.06)
+            pos_hint: {"x": 0.15, "y": 0.7}
+
+        Label:
+            text: "Location"
+            pos_hint: {"x": 0.15, "y": 0.62}
+            size_hint: (0.3, 0.05)
+            color: 0,0,0,1
+
+        TextInput:
+            id: location
+            hint_text: "Enter Location"
+            size_hint: (0.7, 0.06)
+            pos_hint: {"x": 0.15, "y": 0.57}
+
+        Label:
+            text: "Description"
+            pos_hint: {"x": 0.15, "y": 0.49}
+            size_hint: (0.3, 0.05)
+            color: 0,0,0,1
+
+        TextInput:
+            id: description
+            hint_text: "Describe the issue in detail"
+            size_hint: (0.7, 0.2)
+            pos_hint: {"x": 0.15, "y": 0.35}
+            multiline: True
+
+        Button:
+            text: "Submit Report"
+            size_hint: (0.7, 0.07)
+            pos_hint: {"x": 0.15, "y": 0.23}
+            background_color: 0.2, 0.6, 0.2, 1
+            on_release: root.submit_report()
+
+        Button:
+            text: "Logout"
+            size_hint: (0.7, 0.07)
+            pos_hint: {"x": 0.15, "y": 0.12}
+            background_color: 0.8, 0.2, 0.2, 1
+            on_release: app.root.current = "login"

@@ -1,0 +1,21 @@
+# GUI Framework
+kivy==2.3.1
+
+# Database Connector
+mysql-connector-python==9.0.0
+
+# For file/image handling (optional but useful)
+Pillow==10.4.0
+
+# For data export and CSV/Excel operations
+pandas==2.2.2
+openpyxl==3.1.5
+
+# For password hashing (secure login)
+bcrypt==4.1.3
+
+# For sending email notifications (optional future feature)
+smtplib3==0.1.2
+
+# For charts and analysis (optional admin dashboard)
+matplotlib==3.9.2
